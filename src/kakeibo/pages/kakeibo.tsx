@@ -11,7 +11,7 @@ import ExpenseInputList from "../components/ExpenseInputList";
 import EditModal from "../components/editModal";
 import ErrorMessage from "../components/ErrorMessage";
 import {
- transformExpenses,
+  transformExpenses,
   filteredExpenses,
   getExpenseFromStorage,
   validate,
@@ -85,7 +85,7 @@ const Kakeibo = () => {
     setError([]);
   };
 
-  const expenseDisplayList =transformExpenses(expenseList);
+  const expenseDisplayList = transformExpenses(expenseList);
   const filterList = filteredExpenses(expenseDisplayList, selectedCategory);
 
   const handleEditing = (ID: number) => {
@@ -101,6 +101,12 @@ const Kakeibo = () => {
     setTitle("");
     setAmount("");
     setCategory("");
+  };
+
+  const handleDeleteItem = (id: number) => {
+    const newItem = expenseList.filter((item) => item.ID !== id);
+    localStorage.setItem("kakeibo", JSON.stringify(newItem));
+    return setExpenseList(newItem);
   };
 
   useEffect(() => {
@@ -145,6 +151,7 @@ const Kakeibo = () => {
             key={item.title}
             item={item}
             handleEditing={() => handleEditing(item.ID)}
+            handleDeleteItem={()=>handleDeleteItem(item.ID)}
           />
         ))
       ) : (

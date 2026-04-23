@@ -37,7 +37,7 @@ margin-bottom: 8px;
 .kakeiboForm{
   margin-bottom: 16px;
 }
-.editButton{
+.expenseInputList-deleteButton,.expenseInputList-editButton{
   padding: 0.3em 0.6em;
   font-size: 12px;
 }
