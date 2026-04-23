@@ -1,0 +1,67 @@
+
+.expensePage form div{
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 10px;
+margin-bottom: 8px;
+}
+.expensePage form div input,
+.expensePage form div select{
+  width: 70%;
+}
+
+.expenseListItem{
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+.expenseListItem p{
+  white-space: pre-line;
+  text-align: left;
+}
+.expenseListItem .title{
+  flex: 3;
+}
+.expenseListItem .amount{
+  flex: 1;
+}
+.expenseListItem .date,.expenseListItem .category{
+  flex-shrink:0;
+  min-width: 65px;
+}
+.kakeiboForm{
+  margin-bottom: 16px;
+}
+.editButton{
+  padding: 0.3em 0.6em;
+  font-size: 12px;
+}
+.cancelButton{
+  margin-left: 8px;
+}
+
+
+/* -----kakeiboModal */
+.kakeiboModal{
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.kakeiboInner{
+  background-color: #fdfdfd;
+  margin: 15% auto;
+  padding: 40px 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+}
