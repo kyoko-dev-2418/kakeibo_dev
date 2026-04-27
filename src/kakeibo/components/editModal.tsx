@@ -1,48 +1,27 @@
 import KakeiboForm from "./kakeiboForm";
-import type { CategoryState } from "./kakeibotype";
+import type { ExpenseItem } from "./kakeibotype";
 
 type kakeiboFormProps = {
-  handleSaveExpense: (e: React.FormEvent<HTMLFormElement>) => void;
-  validateAmount: (amount: string) => void;
-  title: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
-  day: string;
-  setDay: React.Dispatch<React.SetStateAction<string>>;
-  amount: string;
-  category: CategoryState;
-  setCategory: React.Dispatch<React.SetStateAction<CategoryState>>;
   handleEditingCancel: () => void;
-  editingMode: boolean;
+    editingMode: boolean;
+    saveExpense: (nextExpense: ExpenseItem) => void;
+    editingExpense: ExpenseItem | null | undefined;
 };
 
 const EditModal = ({
-  handleSaveExpense,
-  validateAmount,
-  title,
-  setTitle,
-  day,
-  setDay,
-  amount,
-  category,
-  setCategory,
   handleEditingCancel,
+  saveExpense,
   editingMode,
+  editingExpense,
 }: kakeiboFormProps) => {
   return (
     <div className="kakeiboModal">
       <div className="kakeiboInner">
         <KakeiboForm
-          handleSaveExpense={handleSaveExpense}
-          validateAmount={validateAmount}
-          title={title}
-          setTitle={setTitle}
-          day={day}
-          setDay={setDay}
-          amount={amount}
-          category={category}
-          setCategory={setCategory}
           handleEditingCancel={handleEditingCancel}
-          editingMode={editingMode}
+        editingMode={editingMode}
+        editingExpense={editingExpense}
+        saveExpense={saveExpense}
         />
       </div>
     </div>

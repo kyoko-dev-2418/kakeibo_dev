@@ -1,4 +1,6 @@
-
+.expensePage form {
+  height: 200px;
+}
 .expensePage form div{
 display: flex;
 align-items: center;

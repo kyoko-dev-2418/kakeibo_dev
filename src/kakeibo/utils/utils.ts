@@ -47,6 +47,10 @@ export const validate = ({ day, title, amount, category }: validateProps) => {
   if (category === "") {
     newError.push("カテゴリを選択してください。");
   }
+  const Num = Number(amount);
+    if (isNaN(Num)) {
+      newError.push("金額は数値で入力してください。");
+    }
   return newError;
 };
 
