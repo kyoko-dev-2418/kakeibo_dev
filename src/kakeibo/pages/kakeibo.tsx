@@ -70,8 +70,6 @@ const Kakeibo = () => {
       <h2>家計簿</h2>
       {!editingMode ? (
         <KakeiboForm
-          handleEditingCancel={handleEditingCancel}
-          editingMode={editingMode}
           editingExpense={editingExpense}
           saveExpense={saveExpense}
         />
