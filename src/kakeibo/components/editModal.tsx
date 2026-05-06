@@ -1,49 +1,75 @@
-import KakeiboForm from "./kakeiboForm";
-import type { CategoryState } from "./kakeibotype";
+import type { ExpenseFormItem, ExpenseItem } from "./kakeibotype";
+import KakeiboFormField from "./kakeiboFormField";
+import { useKakeiboForm } from "../hooks/useKakeiboForm";
+import { useEffect } from "react";
 
 type kakeiboFormProps = {
-  handleSaveExpense: (e: React.FormEvent<HTMLFormElement>) => void;
-  validateAmount: (amount: string) => void;
-  title: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
-  day: string;
-  setDay: React.Dispatch<React.SetStateAction<string>>;
-  amount: string;
-  category: CategoryState;
-  setCategory: React.Dispatch<React.SetStateAction<CategoryState>>;
   handleEditingCancel: () => void;
   editingMode: boolean;
+  saveExpense: (nextExpense: ExpenseFormItem) => void;
+  editingExpense: ExpenseItem | null | undefined;
 };
 
 const EditModal = ({
-  handleSaveExpense,
-  validateAmount,
-  title,
-  setTitle,
-  day,
-  setDay,
-  amount,
-  category,
-  setCategory,
   handleEditingCancel,
+  saveExpense,
   editingMode,
+  editingExpense,
 }: kakeiboFormProps) => {
+  const {
+    title,
+    setTitle,
+    day,
+    setDay,
+    amount,
+    setAmount,
+    category,
+    setCategory,
+    error,
+    setError,
+    resetForm
+  } = useKakeiboForm();
+
+    useEffect(() => {
+    if (editingExpense) {
+      setDay(editingExpense.day);
+      setTitle(editingExpense.title);
+      setAmount(editingExpense.amount.toString());
+      setCategory(editingExpense.category);
+    } else {
+      resetForm();
+      return;
+    }
+  }, [editingExpense]);
+
   return (
     <div className="kakeiboModal">
       <div className="kakeiboInner">
-        <KakeiboForm
-          handleSaveExpense={handleSaveExpense}
-          validateAmount={validateAmount}
+        <KakeiboFormField
           title={title}
           setTitle={setTitle}
           day={day}
           setDay={setDay}
           amount={amount}
+          setAmount={setAmount}
           category={category}
           setCategory={setCategory}
-          handleEditingCancel={handleEditingCancel}
-          editingMode={editingMode}
+          error={error}
+          setError={setError}
+          saveExpense={saveExpense}
         />
+
+        {editingMode === true && (
+          <button
+            type="button"
+            onClick={() => {
+              handleEditingCancel();
+            }}
+            className="cancelButton"
+          >
+            キャンセル
+          </button>
+        )}
       </div>
     </div>
   );

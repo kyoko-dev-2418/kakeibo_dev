@@ -1,4 +1,6 @@
-
+.expensePage form {
+  height: 200px;
+}
 .expensePage form div{
 display: flex;
 align-items: center;
@@ -37,13 +39,13 @@ margin-bottom: 8px;
 .kakeiboForm{
   margin-bottom: 16px;
 }
-.editButton{
+.expenseInputList-deleteButton,.expenseInputList-editButton{
   padding: 0.3em 0.6em;
   font-size: 12px;
 }
-.cancelButton{
+/* .cancelButton{
   margin-left: 8px;
-}
+} */
 
 
 /* -----kakeiboModal */
