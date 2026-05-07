@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./kakeibo.css";
 import type {
-  // CategoryValue,
-  // CategoryState,
   ExpenseFormItem,
   ExpenseItem,
   selectedCategoryType,
@@ -14,7 +12,6 @@ import {
   transformExpenses,
   filteredExpenses,
   getExpenseFromStorage,
-  // validate,
 } from "../utils/utils";
 import { selectCategoryLabels } from "../constants/kakeiboConstants";
 
@@ -50,8 +47,10 @@ const Kakeibo = () => {
 
   const handleEditing = (ID: number) => {
     const editItem = expenseList.find((expense) => expense.ID === ID);
-    setEditingMode(true);
-    setEditingExpense(editItem);
+    if (editItem) {
+      setEditingMode(true);
+      setEditingExpense(editItem);
+    }
   };
 
   const handleEditingCancel = () => {
@@ -69,12 +68,9 @@ const Kakeibo = () => {
     <div className="expensePage">
       <h2>家計簿</h2>
       {!editingMode ? (
-        <KakeiboForm
-          editingExpense={editingExpense}
-          saveExpense={saveExpense}
-        />
+        <KakeiboForm saveExpense={saveExpense} />
       ) : (
-        <div style={{ height:"200px" }}></div>
+        <div style={{ height: "200px" }}></div>
       )}
 
       {selectCategoryLabels.length > 0 &&
@@ -101,6 +97,7 @@ const Kakeibo = () => {
 
       {editingMode && (
         <EditModal
+          key={editingExpense?.ID}
           handleEditingCancel={handleEditingCancel}
           editingMode={editingMode}
           editingExpense={editingExpense}
