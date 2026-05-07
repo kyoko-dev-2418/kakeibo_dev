@@ -1,11 +1,11 @@
 import { useState } from "react";
-import type { CategoryState } from "../components/kakeibotype";
+import type { CategoryState,ExpenseItem } from "../components/kakeibotype";
 
-export const useKakeiboForm = () => {
-  const [title, setTitle] = useState<string>("");
-  const [day, setDay] = useState<string>("");
-  const [amount, setAmount] = useState<string>("");
-  const [category, setCategory] = useState<CategoryState>("");
+export const useKakeiboForm = (editingExpense?:ExpenseItem|null| undefined) => {
+  const [title, setTitle] = useState<string>(editingExpense?.title||"");
+  const [day, setDay] = useState<string>(editingExpense?.day||"");
+  const [amount, setAmount] = useState<string>(editingExpense?.amount.toString()||"");
+  const [category, setCategory] = useState<CategoryState>(editingExpense?.category||"");
   const [error, setError] = useState<string[]>([]);
 
   const resetForm = () => {

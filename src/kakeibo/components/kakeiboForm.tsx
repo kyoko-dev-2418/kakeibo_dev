@@ -1,16 +1,13 @@
-import type { ExpenseItem, ExpenseFormItem } from "../components/kakeibotype";
+import type {  ExpenseFormItem } from "../components/kakeibotype";
 import KakeiboFormField from "./kakeiboFormField";
 import { useKakeiboForm } from "../hooks/useKakeiboForm";
-import { useEffect } from "react";
 
 type kakeiboFormProps = {
   saveExpense: (nextExpense: ExpenseFormItem) => void;
-  editingExpense: ExpenseItem | null | undefined;
 };
 
 const KakeiboForm = ({
   saveExpense,
-  editingExpense,
 }: kakeiboFormProps) => {
   const {
     title,
@@ -26,18 +23,7 @@ const KakeiboForm = ({
     resetForm,
   } = useKakeiboForm();
 
-  useEffect(() => {
-    if (editingExpense) {
-      setDay(editingExpense.day);
-      setTitle(editingExpense.title);
-      setAmount(editingExpense.amount.toString());
-      setCategory(editingExpense.category);
-    } else {
-      resetForm();
-      return;
-    }
-  }, [editingExpense]);
-
+ 
   return (
     <KakeiboFormField
       title={title}
@@ -51,6 +37,7 @@ const KakeiboForm = ({
       error={error}
       setError={setError}
       saveExpense={saveExpense}
+      resetForm={resetForm}
     />
   );
 };

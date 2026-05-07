@@ -6,7 +6,7 @@ type expenseInputListProps = {
   handleDeleteItem:(ID:number)=>void;
 };
 
-const ExpenseInputList = ({ item,handleEditing,handleDeleteItem }: expenseInputListProps) => {
+const ExpenseInputList = ({ item,handleEditing,handleDeleteItem}: expenseInputListProps) => {
   return (
     <div className="expenseListItem">
       <p className="date">{item.day}</p>

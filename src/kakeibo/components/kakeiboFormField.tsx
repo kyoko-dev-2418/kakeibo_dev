@@ -1,10 +1,6 @@
 import type { CategoryState } from "./kakeibotype";
 import { validate } from "../utils/utils";
-import type {
-  CategoryValue,
-  ExpenseFormItem,
-  result,
-} from "./kakeibotype";
+import type { CategoryValue, ExpenseFormItem, result } from "./kakeibotype";
 import ErrorMessage from "./ErrorMessage";
 
 type kakeiboFormProps = {
@@ -19,14 +15,26 @@ type kakeiboFormProps = {
   setCategory: React.Dispatch<React.SetStateAction<CategoryState>>;
   error: string[];
   setError: React.Dispatch<React.SetStateAction<string[]>>;
+  resetForm: () => void;
+  setEditing?:()=>void;
 };
 
 const KakeiboFormField = ({
   saveExpense,
-  title,setTitle,day,setDay,amount,setAmount,category,setCategory,error,setError
+  title,
+  setTitle,
+  day,
+  setDay,
+  amount,
+  setAmount,
+  category,
+  setCategory,
+  error,
+  setError,
+  resetForm,
 }: kakeiboFormProps) => {
   const sanitizeAmount = (amount: string) => {
-    if (Number(amount) < 0) amount="0";
+    if (Number(amount) < 0) amount = "0";
     setAmount(amount);
   };
 
@@ -52,9 +60,11 @@ const KakeiboFormField = ({
     const nextExpense = createExpense();
     if ("errors" in nextExpense) {
       setError(nextExpense.errors);
+      resetForm();
       return;
     }
     saveExpense(nextExpense.data);
+    resetForm();
     setError([]);
   };
 
@@ -119,8 +129,6 @@ const KakeiboFormField = ({
         </div>
 
         <button type="submit">保存</button>
-
-
       </form>
 
       {error.length > 0 &&
