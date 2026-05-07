@@ -18,22 +18,21 @@ import { selectCategoryLabels } from "../constants/kakeiboConstants";
 const Kakeibo = () => {
   const [selectedCategory, setSelectedCategory] =
     useState<selectedCategoryType>("all");
-  const [editingExpense, setEditingExpense] = useState<
-    ExpenseItem | null | undefined
-  >(null);
+  const [editingExpense, setEditingExpense] = useState<ExpenseItem | null>(
+    null,
+  );
   const [expenseList, setExpenseList] = useState<ExpenseItem[]>(() =>
     getExpenseFromStorage(),
   );
 
   const saveExpense = (FormatExpense: ExpenseFormItem) => {
-    const nextExpenseList =
-      editingExpense
-        ? expenseList.map((item) => {
-            return editingExpense.ID === item.ID
-              ? { ...FormatExpense, ID: editingExpense.ID }
-              : item;
-          })
-        : [...expenseList, { ...FormatExpense, ID: Date.now() }];
+    const nextExpenseList = editingExpense
+      ? expenseList.map((item) => {
+          return editingExpense.ID === item.ID
+            ? { ...FormatExpense, ID: editingExpense.ID }
+            : item;
+        })
+      : [...expenseList, { ...FormatExpense, ID: Date.now() }];
 
     setExpenseList(nextExpenseList);
     setEditingExpense(null);
@@ -63,7 +62,7 @@ const Kakeibo = () => {
   return (
     <div className="expensePage">
       <h2>家計簿</h2>
-      {!editingExpense ? (
+      {editingExpense === null ? (
         <KakeiboForm saveExpense={saveExpense} />
       ) : (
         <div style={{ height: "200px" }}></div>
@@ -91,7 +90,7 @@ const Kakeibo = () => {
         </p>
       )}
 
-      {editingExpense && (
+      {editingExpense !== null && (
         <EditModal
           key={editingExpense?.ID}
           handleEditingCancel={handleEditingCancel}
