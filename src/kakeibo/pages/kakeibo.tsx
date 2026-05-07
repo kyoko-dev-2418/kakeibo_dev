@@ -18,26 +18,23 @@ import { selectCategoryLabels } from "../constants/kakeiboConstants";
 const Kakeibo = () => {
   const [selectedCategory, setSelectedCategory] =
     useState<selectedCategoryType>("all");
-  const [editingExpense, setEditingExpense] = useState<
-    ExpenseItem | null | undefined
-  >(null);
-  const [editingMode, setEditingMode] = useState<boolean>(false);
+  const [editingExpense, setEditingExpense] = useState<ExpenseItem | null>(
+    null,
+  );
   const [expenseList, setExpenseList] = useState<ExpenseItem[]>(() =>
     getExpenseFromStorage(),
   );
 
   const saveExpense = (FormatExpense: ExpenseFormItem) => {
-    const nextExpenseList =
-      editingMode && editingExpense
-        ? expenseList.map((item) => {
-            return editingExpense.ID === item.ID
-              ? { ...FormatExpense, ID: editingExpense.ID }
-              : item;
-          })
-        : [...expenseList, { ...FormatExpense, ID: Date.now() }];
+    const nextExpenseList = editingExpense
+      ? expenseList.map((item) => {
+          return editingExpense.ID === item.ID
+            ? { ...FormatExpense, ID: editingExpense.ID }
+            : item;
+        })
+      : [...expenseList, { ...FormatExpense, ID: Date.now() }];
 
     setExpenseList(nextExpenseList);
-    setEditingMode(false);
     setEditingExpense(null);
     localStorage.setItem("kakeibo", JSON.stringify(nextExpenseList));
   };
@@ -48,13 +45,11 @@ const Kakeibo = () => {
   const handleEditing = (ID: number) => {
     const editItem = expenseList.find((expense) => expense.ID === ID);
     if (editItem) {
-      setEditingMode(true);
       setEditingExpense(editItem);
     }
   };
 
   const handleEditingCancel = () => {
-    setEditingMode(false);
     setEditingExpense(null);
   };
 
@@ -67,7 +62,7 @@ const Kakeibo = () => {
   return (
     <div className="expensePage">
       <h2>家計簿</h2>
-      {!editingMode ? (
+      {editingExpense === null ? (
         <KakeiboForm saveExpense={saveExpense} />
       ) : (
         <div style={{ height: "200px" }}></div>
@@ -95,11 +90,10 @@ const Kakeibo = () => {
         </p>
       )}
 
-      {editingMode && (
+      {editingExpense !== null && (
         <EditModal
           key={editingExpense?.ID}
           handleEditingCancel={handleEditingCancel}
-          editingMode={editingMode}
           editingExpense={editingExpense}
           saveExpense={saveExpense}
         />

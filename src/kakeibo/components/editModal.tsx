@@ -4,16 +4,14 @@ import { useKakeiboForm } from "../hooks/useKakeiboForm";
 
 type kakeiboFormProps = {
   handleEditingCancel: () => void;
-  editingMode: boolean;
   saveExpense: (nextExpense: ExpenseFormItem) => void;
-  editingExpense: ExpenseItem | null | undefined;
+  editingExpense: ExpenseItem | null;
 };
 
 const EditModal = ({
   handleEditingCancel,
   saveExpense,
-  editingMode,
-  editingExpense
+  editingExpense,
 }: kakeiboFormProps) => {
   const {
     title,
@@ -29,12 +27,11 @@ const EditModal = ({
     resetForm,
   } = useKakeiboForm(editingExpense);
 
-
   return (
     <div className="kakeiboModal">
       <div className="kakeiboInner">
         <KakeiboFormField
-        key={editingExpense?.ID}
+          key={editingExpense?.ID}
           title={title}
           setTitle={setTitle}
           day={day}
@@ -49,7 +46,7 @@ const EditModal = ({
           resetForm={resetForm}
         />
 
-        {editingMode === true && (
+        {editingExpense !== null && (
           <button
             type="button"
             onClick={() => {
