@@ -4,7 +4,6 @@ import { useKakeiboForm } from "../hooks/useKakeiboForm";
 
 type kakeiboFormProps = {
   handleEditingCancel: () => void;
-  editingMode: boolean;
   saveExpense: (nextExpense: ExpenseFormItem) => void;
   editingExpense: ExpenseItem | null | undefined;
 };
@@ -12,7 +11,6 @@ type kakeiboFormProps = {
 const EditModal = ({
   handleEditingCancel,
   saveExpense,
-  editingMode,
   editingExpense
 }: kakeiboFormProps) => {
   const {
@@ -49,7 +47,7 @@ const EditModal = ({
           resetForm={resetForm}
         />
 
-        {editingMode === true && (
+        {editingExpense && (
           <button
             type="button"
             onClick={() => {
