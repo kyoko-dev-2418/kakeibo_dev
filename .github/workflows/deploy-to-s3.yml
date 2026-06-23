@@ -27,7 +27,7 @@ jobs:
       - name: S3 Sync
         run: |
           aws s3 sync ./dist s3://${{ vars.S3_BUCKET_NAME }}/site/ \
-            --delete \
+            --delete
             
       - name: Invalidate CloudFront
         run: |
