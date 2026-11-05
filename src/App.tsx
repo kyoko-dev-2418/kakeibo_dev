@@ -1,7 +1,7 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css'
-import Count from './todo/pages/count';
-import Todos from './todo/pages/todos';
+import Count from './todo/pages/CountTop';
+import Todos from './todo/pages/TodosTop';
 import Kakeibo from './kakeibo/pages/Kakeibo';
 
 

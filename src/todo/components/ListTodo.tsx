@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Input } from "./types";
-import EditableTodoItem from "./editableTodoItem";
+import EditableTodoItem from "./TodoItemEditable";
 import { useMemo } from "react";
 
 

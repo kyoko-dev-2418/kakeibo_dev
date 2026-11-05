@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Input,Filter } from "../components/types";
-import AddItemForm from "../components/addItemForm";
-import TodoList from "../components/todoList";
+import AddItemForm from "../components/FormAddItem";
+import TodoList from "../components/ListTodo";
 
 
 
