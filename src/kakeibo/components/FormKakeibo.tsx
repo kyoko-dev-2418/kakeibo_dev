@@ -1,14 +1,12 @@
-import type {  ExpenseFormItem } from "../components/kakeibotype";
-import KakeiboFormField from "./kakeiboFormField";
+import type { ExpenseFormItem } from "../components/kakeibotype";
+import KakeiboFormField from "./FormFieldKakeibo";
 import { useKakeiboForm } from "../hooks/useKakeiboForm";
 
 type kakeiboFormProps = {
   saveExpense: (nextExpense: ExpenseFormItem) => void;
 };
 
-const KakeiboForm = ({
-  saveExpense,
-}: kakeiboFormProps) => {
+const KakeiboForm = ({ saveExpense }: kakeiboFormProps) => {
   const {
     title,
     setTitle,
@@ -23,7 +21,6 @@ const KakeiboForm = ({
     resetForm,
   } = useKakeiboForm();
 
- 
   return (
     <KakeiboFormField
       title={title}

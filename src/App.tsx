@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css'
 import Count from './todo/pages/count';
 import Todos from './todo/pages/todos';
-import Kakeibo from './kakeibo/pages/kakeibo';
+import Kakeibo from './kakeibo/pages/KakeiboTop';
 
 
 // App.jsx は今は Router と Provider を置く場所
