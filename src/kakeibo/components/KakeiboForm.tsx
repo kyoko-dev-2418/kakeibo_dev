@@ -1,5 +1,5 @@
-import type { ExpenseFormItem } from "../components/kakeibotype";
-import KakeiboFormField from "./FormFieldKakeibo";
+import type { ExpenseFormItem } from "./kakeibotype";
+import KakeiboFormField from "./KakeiboFormField";
 import { useKakeiboForm } from "../hooks/useKakeiboForm";
 
 type kakeiboFormProps = {

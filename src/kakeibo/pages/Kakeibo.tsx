@@ -7,7 +7,7 @@ import type {
 } from "../components/kakeibotype";
 import KakeiboForm from "../components/kakeiboForm";
 import ExpenseInputList from "../components/ExpenseInputList";
-import EditModal from "../components/ModalEdit";
+import EditModal from "../components/EditModal";
 import {
   transformExpenses,
   filteredExpenses,
