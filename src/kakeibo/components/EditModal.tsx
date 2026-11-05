@@ -1,8 +1,8 @@
 import type { ExpenseFormItem, ExpenseItem } from "./kakeibotype";
-import KakeiboFormField from "./kakeiboFormField";
+import KakeiboFormField from "./KakeiboFormField";
 import { useKakeiboForm } from "../hooks/useKakeiboForm";
 
-type kakeiboFormProps = {
+type EditModalProps = {
   handleEditingCancel: () => void;
   saveExpense: (nextExpense: ExpenseFormItem) => void;
   editingExpense: ExpenseItem | null;
@@ -12,7 +12,7 @@ const EditModal = ({
   handleEditingCancel,
   saveExpense,
   editingExpense,
-}: kakeiboFormProps) => {
+}: EditModalProps) => {
   const {
     title,
     setTitle,

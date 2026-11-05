@@ -3,7 +3,7 @@ import { validate } from "../utils/utils";
 import type { CategoryValue, ExpenseFormItem, result } from "./kakeibotype";
 import ErrorMessage from "./ErrorMessage";
 
-type kakeiboFormProps = {
+type KakeiboFormFieldProps = {
   saveExpense: (nextExpense: ExpenseFormItem) => void;
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
@@ -32,7 +32,7 @@ const KakeiboFormField = ({
   error,
   setError,
   resetForm,
-}: kakeiboFormProps) => {
+}: KakeiboFormFieldProps) => {
   const sanitizeAmount = (amount: string) => {
     if (Number(amount) < 0) amount = "0";
     setAmount(amount);

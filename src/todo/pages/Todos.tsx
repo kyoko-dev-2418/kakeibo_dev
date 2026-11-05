@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Input,Filter } from "../components/types";
-import AddItemForm from "../components/addItemForm";
-import TodoList from "../components/todoList";
+import AddItemForm from "../components/AddItemForm";
+import TodoList from "../components/TodoList";
 
 
 
@@ -59,8 +59,6 @@ function Todos() {
         inputFilter={inputFilter}
         editId={editId}
         setEditId={setEditId}
-        // inputValue={inputValue}
-        // setInputValue={setInputValue}
         editInputValue={editInputValue}
         setEditInputValue={setEditInputValue}
       />
