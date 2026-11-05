@@ -5,7 +5,7 @@ import type {
   ExpenseItem,
   selectedCategoryType,
 } from "../components/kakeibotype";
-import KakeiboForm from "../components/kakeiboForm";
+import KakeiboForm from "../components/KakeiboForm";
 import ExpenseInputList from "../components/ExpenseInputList";
 import EditModal from "../components/EditModal";
 import {

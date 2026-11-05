@@ -59,8 +59,6 @@ function Todos() {
         inputFilter={inputFilter}
         editId={editId}
         setEditId={setEditId}
-        // inputValue={inputValue}
-        // setInputValue={setInputValue}
         editInputValue={editInputValue}
         setEditInputValue={setEditInputValue}
       />
